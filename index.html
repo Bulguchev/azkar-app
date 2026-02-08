@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📖 Азкары - Благодатный дождь</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}:root{--primary:#0a0a0a;--secondary:#1a1a1a;--accent:#2d8cff;--text:#fff;--text2:#b0b0b0;--card:#1e1e1e;--border:#333;--radius:16px}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--primary);color:var(--text);min-height:100vh;line-height:1.6;padding:20px}.container{max-width:800px;margin:0 auto}header{text-align:center;padding:25px 0 30px}.logo{display:flex;align-items:center;justify-content:center;gap:15px;margin-bottom:10px}.logo-icon{font-size:36px;color:var(--accent)}.logo-text{font-size:28px;font-weight:700;background:linear-gradient(45deg,var(--accent),#6c63ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.subtitle{color:var(--text2);font-size:15px}.search-box{position:relative;margin-bottom:25px}.search-input{width:100%;padding:16px 50px 16px 20px;background:var(--secondary);border:2px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:16px}.search-input:focus{outline:none;border-color:var(--accent)}.search-icon{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:18px}.categories-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-bottom:30px}@media (min-width:768px){.categories-grid{grid-template-columns:repeat(4,1fr)}}.category-card{background:var(--card);border-radius:var(--radius);padding:20px 15px;text-align:center;cursor:pointer;border:1px solid var(--border);min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center}.category-card:hover{border-color:var(--accent);transform:translateY(-5px)}.category-icon{font-size:32px;margin-bottom:12px}.category-title{font-size:15px;font-weight:600}.category-count{font-size:12px;color:var(--text2)}.azkar-view{display:none}.azkar-view.active{display:block}.azkar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.back-button{background:var(--secondary);border:none;color:var(--text);width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px}.azkar-title{font-size:22px;font-weight:700;text-align:center;flex:1}.azkar-list{margin-bottom:30px}.azkar-item{background:var(--card);border-radius:var(--radius);padding:25px;margin-bottom:20px;border:1px solid var(--border);position:relative}.azkar-number{position:absolute;top:-12px;left:20px;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}.arabic-text{font-size:24px;text-align:right;margin-bottom:20px;font-weight:600;line-height:1.8;direction:rtl}.translation{font-size:16px;margin-bottom:15px;line-height:1.7;padding:15px;background:rgba(255,255,255,0.05);border-radius:8px}.transliteration{font-size:14px;color:var(--text2);margin-bottom:20px;padding-left:10px;border-left:3px solid var(--accent)}.counter-container{display:flex;align-items:center;justify-content:space-between;margin-top:25px;padding-top:20px;border-top:1px solid var(--border)}.counter-btn{background:var(--secondary);border:none;color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px}.counter-value{font-size:20px;font-weight:700;min-width:50px;text-align:center;color:var(--accent)}.bookmark-btn{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text2);font-size:22px;cursor:pointer}.bookmark-btn.active{color:#ffd700}.navigation-buttons{display:flex;gap:15px;margin-top:30px}.nav-btn{flex:1;padding:15px;background:var(--secondary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}footer{text-align:center;margin-top:40px;padding-top:30px;border-top:1px solid var(--border);color:var(--text2);font-size:13px}.loading{text-align:center;padding:60px 20px;font-size:16px;color:var(--text2)}.empty-state{text-align:center;padding:60px 20px;color:var(--text2)}@media (max-width:480px){.container{padding:0 10px}.categories-grid{grid-template-columns:repeat(2,1fr)}.category-card{min-height:100px}.category-icon{font-size:28px}.category-title{font-size:14px}.arabic-text{font-size:22px}.azkar-item{padding:20px}}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--secondary)}::-webkit-scrollbar-thumb{background:var(--accent)}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🌧️</div>
+                <div class="logo-text">Благодатный дождь</div>
+            </div>
+            <div class="subtitle">Полная коллекция азкаров</div>
+        </header>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Поиск азкаров...">
+            <div class="search-icon"><i class="fas fa-search"></i></div>
+        </div>
+
+        <div class="categories-grid" id="mainMenu">
+            <div class="category-card" data-category="morning">
+                <div class="category-icon">🌅</div>
+                <div class="category-title">Утренние азкары</div>
+                <div class="category-count">12 азкаров</div>
+            </div>
+            <div class="category-card" data-category="evening">
+                <div class="category-icon">🌇</div>
+                <div class="category-title">Вечерние азкары</div>
+                <div class="category-count">10 азкаров</div>
+            </div>
+            <div class="category-card" data-category="sleep">
+                <div class="category-icon">😴</div>
+                <div class="category-title">Перед сном</div>
+                <div class="category-count">8 азкаров</div>
+            </div>
+            <div class="category-card" data-category="wakeup">
+                <div class="category-icon">🌞</div>
+                <div class="category-title">Пробуждение</div>
+                <div class="category-count">6 азкаров</div>
+            </div>
+            <div class="category-card" data-category="prayer">
+                <div class="category-icon">🕌</div>
+                <div class="category-title">После намаза</div>
+                <div class="category-count">15 азкаров</div>
+            </div>
+            <div class="category-card" data-category="quran">
+                <div class="category-icon">📖</div>
+                <div class="category-title">Аяты Корана</div>
+                <div class="category-count">20 аятов</div>
+            </div>
+            <div class="category-card" data-category="duas">
+                <div class="category-icon">🤲</div>
+                <div class="category-title">Дуа</div>
+                <div class="category-count">50 дуа</div>
+            </div>
+            <div class="category-card" data-category="hadith">
+                <div class="category-icon">⚫</div>
+                <div class="category-title">Хадисы</div>
+                <div class="category-count">100 хадисов</div>
+            </div>
+            <div class="category-card" data-category="bookmarks">
+                <div class="category-icon">⭐</div>
+                <div class="category-title">Закладки</div>
+                <div class="category-count" id="bookmarksCount">0</div>
+            </div>
+        </div>
+
+        <div class="azkar-view" id="azkarView">
+            <div class="azkar-header">
+                <button class="back-button" onclick="showMainMenu()"><i class="fas fa-arrow-left"></i></button>
+                <div class="azkar-title" id="categoryTitle"></div>
+                <div style="width:40px"></div>
+            </div>
+            <div class="azkar-list" id="azkarList"></div>
+            <div class="navigation-buttons">
+                <button class="nav-btn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i> Наверх</button>
+                <button class="nav-btn" onclick="shareAzkar()"><i class="fas fa-share"></i> Поделиться</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const azkarData = {
+            morning: [
+                {arabic:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",translation:"Мы встретили утро, и власть принадлежит Аллаху, хвала Аллаху, нет божества, кроме Аллаха Единого, у Которого нет сотоварища. Ему принадлежит власть, Ему хвала, и Он над всякой вещью мощен!",transliteration:"Асбахна ва асбахал-мульку лилляхи, валь-хамду лилляхи, ля иляха илляллаху вахдаху ля шарика лях, ляхуль-мульку ва ляхуль-хамду, ва хува аля кулли шайин кадир",count:1},
+                {arabic:"اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ",translation:"О Аллах, с Тобой мы встречаем утро, с Тобой встречаем вечер, с Тобой живем, с Тобой умираем, и к Тебе воскресение!",transliteration:"Аллахумма бика асбахна, ва бика амсайна, ва бика нахья, ва бика намуту, ва иляйкан-нушур",count:1},
+                {arabic:"سُبْحَانَ اللهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ",translation:"Свят Аллах и хвала Ему, столько, сколько творений Его, насколько Он доволен, весом Трона Его и чернилами слов Его!",transliteration:"Субханаллахи ва бихамдихи адада халкьихь, ва рида нафсихь, ва зината аршихь, ва мидада калиматихь",count:3},
+                {arabic:"اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلاَئِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللهُ لاَ إِلَهَ إِلاَّ أَنْتَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ",translation:"О Аллах, поистине, я встретил утро, свидетельствуя о Тебе, и свидетельствуя о носителях Твоего Трона, и Твоих ангелах, и обо всех Твоих творениях, что Ты — Аллах, и нет божества, кроме Тебя, и что Мухаммад — Твой раб и Твой посланник.",transliteration:"Аллахумма инни асбахту ушхидука ва ушхиду хамалята аршик, ва маляикатак, ва джамиа халкьик, аннака анталлаху ля иляха илля анта, ва анна Мухаммадан абдука ва расулюк",count:1},
+                {arabic:"اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لاَ شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ",translation:"О Аллах, какое бы благо не наступило утром со мной или с кем-либо из Твоих творений, то оно от Тебя одного, у Которого нет сотоварища, и хвала Тебе, и благодарность Тебе.",transliteration:"Аллахумма ма асбаха би мин ниматин ау биахадин мин халкьик фа минка вахдака ля шарика ляк, фалякаль-хамду ва лякаш-шукр",count:1},
+                {arabic:"حَسْبِيَ اللهُ لاَ إِلَهَ إِلاَّ هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ",translation:"Достаточно мне Аллаха, нет божества, кроме Него, на Него я положился, и Он — Господь великого Трона.",transliteration:"Хасбияллаху ля иляха илля хува, алейхи таваккяльту, ва хува раббуль-аршиль-азым",count:7},
+                {arabic:"بِسْمِ اللهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ، وَهُوَ السَّمِيعُ الْعَلِيمُ",translation:"С именем Аллаха, с именем Которого ничто не вредит ни на земле, ни на небе, и Он — Слышащий, Знающий.",transliteration:"Бисмилляхил-лязи ля ядурру маасмихи шайун филь-арди ва ля фис-самаи, ва хувас-самиуль-алим",count:3},
+                {arabic:"رَضِيتُ بِاللهِ رَبًّا، وَبِالإِسْلاَمِ دِينًا، وَبِمُحَمَّدٍ نَبِيًّا",translation:"Я доволен Аллахом как Господом, исламом как религией и Мухаммадом как пророком.",transliteration:"Разиту билляхи раббан, ва биль-ислями динан, ва би-Мухаммадин набийя",count:3},
+                {arabic:"اللَّهُمَّ إِنِّي أَصْبَحْتُ مِنْكَ فِي نِعْمَةٍ وَعَافِيَةٍ وَسِتْرٍ، فَأَتِمَّ نِعْمَتَكَ عَلَيَّ وَعَافِيَتَكَ وَسِتْرَكَ فِي الدُّنْيَا وَالآخِرَةِ",translation:"О Аллах, поистине, я встретил утро, имея от Тебя благо, благополучие и покров, так заверши же Свое благо для меня, и Свое благополучие, и Свой покров в этом мире и в мире вечном.",transliteration:"Аллахумма инни асбахту минка фи ниматин ва афиятин ва ситрин, фа атимма ниматака алеййа ва афиятака ва ситрака фид-дунья валь-ахира",count:1},
+                {arabic:"اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لاَ إِلَهَ إِلاَّ أَنْتَ",translation:"О Аллах, даруй мне благополучие в моем теле, о Аллах, даруй мне благополучие в моем слухе, о Аллах, даруй мне благополучие в моем зрении, нет божества, кроме Тебя.",transliteration:"Аллахумма афини фи бадани, Аллахумма афини фи самъи, Аллахумма афини фи басари, ля иляха илля анта",count:3}
+            ],
+            evening: [
+                {arabic:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",translation:"Мы встретили вечер, и власть принадлежит Аллаху, хвала Аллаху, нет божества, кроме Аллаха Единого, у Которого нет сотоварища. Ему принадлежит власть, Ему хвала, и Он над всякой вещью мощен!",transliteration:"Амсайна ва амсаль-мульку лилляхи, валь-хамду лилляхи, ля иляха илляллаху вахдаху ля шарика лях, ляхуль-мульку ва ляхуль-хамду, ва хува аля кулли шайин кадир",count:1},
+                {arabic:"اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ",translation:"О Аллах, с Тобой мы встречаем вечер, с Тобой встречаем утро, с Тобой живем, с Тобой умираем, и к Тебе возвращение.",transliteration:"Аллахумма бика амсайна, ва бика асбахна, ва бика нахья, ва бика намуту, ва иляйкаль-масир",count:1},
+                {arabic:"اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي، فَاغْفِرْ لِي فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ",translation:"О Аллах, Ты — мой Господь, и нет божества, кроме Тебя. Ты создал меня, и я — Твой раб, и я буду верен Тебе, пока у меня хватит сил. Прибегаю к Тебе от зла того, что я совершил. Признаю милость, оказанную Тобой мне, и признаю свой грех. Прости же меня, ибо, поистине, никто не прощает грехов, кроме Тебя.",transliteration:"Аллахумма анта рабби ля иляха илля анта, халактани ва ана абдук, ва ана аля ахдика ва ваъдика мастатаъту, а'узу бика мин шарри ма санаъту, абуу ляка биниъматика алеййа, ва абуу ляка бизанби, фагфир ли фа иннаху ля ягфируз-зунуба илля анта",count:1},
+                {arabic:"اللَّهُمَّ إِنِّي أَمْسَيْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلاَئِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللهُ لاَ إِلَهَ إِلاَّ أَنْتَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ",translation:"О Аллах, поистине, я встретил вечер, свидетельствуя о Тебе, и свидетельствуя о носителях Твоего Трона, и Твоих ангелах, и обо всех Твоих творениях, что Ты — Аллах, и нет божества, кроме Тебя, и что Мухаммад — Твой раб и Твой посланник.",transliteration:"Аллахумма инни амсайту ушхидука ва ушхиду хамалята аршик, ва маляикатак, ва джамиа халкьик, аннака анталлаху ля иляха илля анта, ва анна Мухаммадан абдука ва расулюк",count:1},
+                {arabic:"أَعُوذُ بِكَلِمَاتِ اللهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",translation:"Прибегаю к совершенным словам Аллаха от зла того, что Он создал.",transliteration:"А'узу би-кялиматил-ляхит-таммати мин шарри ма халак",count:3},
+                {arabic:"بِسْمِ اللهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ، وَهُوَ السَّمِيعُ الْعَلِيمُ",translation:"С именем Аллаха, с именем Которого ничто не вредит ни на земле, ни на небе, и Он — Слышащий, Знающий.",transliteration:"Бисмилляхил-лязи ля ядурру маасмихи шайун филь-арди ва ля фис-самаи, ва хувас-самиуль-алим",count:3},
+                {arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي",translation:"О Аллах, поистине, я прошу Тебя о прощении и благополучии в этом мире и в мире вечном. О Аллах, поистине, я прошу Тебя о прощении и благополучии в моей религии, в моем мирском уделе, в моей семье и в моем имуществе.",transliteration:"Аллахумма инни асъалюкаль-афва валь-афията фид-дунья валь-ахира. Аллахумма инни асъалюкаль-афва валь-афията фи дини ва дуньяйа ва ахли ва мали",count:3},
+                {arabic:"اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ، وَمِنْ خَلْفِي، وَعَنْ يَمِينِي، وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي",translation:"О Аллах, охрани меня спереди, и сзади, и справа, и слева, и сверху, и прибегаю к величию Твоему, чтобы не быть поглощенным снизу.",transliteration:"Аллахуммахфазни мин бейни ядаййа, ва мин халфи, ва ан ямини, ва ан шимали, ва мин фавки, ва а'узу би-азаматик ан угталя мин тахти",count:1},
+                {arabic:"اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَاوَاتِ وَالأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ",translation:"О Аллах, Знающий сокровенное и явное, Создатель небес и земли, Господь и Владыка всего сущего, свидетельствую, что нет божества, кроме Тебя, прибегаю к Тебе от зла моей души и от зла шайтана и его многобожия.",transliteration:"Аллахумма алималь-гайби ваш-шахадати фатырас-самавати валь-арди, рабба кулли шайин ва маликах, ашхаду ан ля иляха илля анта, а'узу бика мин шарри нафси, ва мин шарриш-шайтани ва ширкихь",count:1},
+                {arabic:"حَسْبِيَ اللهُ لاَ إِلَهَ إِلاَّ هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ",translation:"Достаточно мне Аллаха, нет божества, кроме Него, на Него я положился, и Он — Господь великого Трона.",transliteration:"Хасбияллаху ля иляха илля хува, алейхи таваккяльту, ва хува раббуль-аршиль-азым",count:7}
+            ],
+            prayer: [
+                {arabic:"سُبْحَانَ اللهِ",translation:"Свят Аллах",transliteration:"Субханаллах",count:33},
+                {arabic:"الْحَمْدُ لِلَّهِ",translation:"Хвала Аллаху",transliteration:"Альхамдулиллях",count:33},
+                {arabic:"اللهُ أَكْبَرُ",translation:"Аллах Велик",transliteration:"Аллаху акбар",count:34},
+                {arabic:"لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",translation:"Нет божества, кроме Аллаха Единого, у Которого нет сотоварища. Ему принадлежит власть, Ему хвала, и Он над всякой вещью мощен!",transliteration:"Ля иляха илляллаху вахдаху ля шарика лях, ляхуль-мульку ва ляхуль-хамду, ва хува аля кулли шайин кадир",count:1},
+                {arabic:"اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ",translation:"О Аллах, помоги мне поминать Тебя, благодарить Тебя и наилучшим образом поклоняться Тебе.",transliteration:"Аллахумма а'инни аля зикрик, ва шукрик, ва хусни ибадатик",count:1}
+            ],
+            duas: [
+                {arabic:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",translation:"Господь наш! Даруй нам добро в этом мире и добро в Последней жизни и защити нас от мучений Огня.",transliteration:"Раббана атина фид-дунья хасанатан ва филь-ахирати хасанатан ва кина азабан-нар",count:1},
+                {arabic:"رَبِّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَارْزُقْنِي",translation:"Господи, прости меня, помилуй меня, наставь меня на прямой путь и даруй мне удел.",transliteration:"Раббигфир ли вархамни вахдини варзукни",count:1},
+                {arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلاً مُتَقَبَّلاً",translation:"О Аллах, поистине, я прошу Тебя о полезном знании, благом уделе и принимаемом деянии.",transliteration:"Аллахумма инни асъалюка илман нафиъан, ва ризкан таййибан, ва амалян мутакаббалян",count:1}
+            ]
+        };
+
+        let bookmarks = JSON.parse(localStorage.getItem('azkar_bookmarks') || '[]');
+        let currentCategory = '';
+        let isSearchMode = false;
+        let searchResults = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBookmarksCount();
+            setupEventListeners();
+            loadCategoryCounts();
+        });
+
+        function setupEventListeners() {
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    showCategory(category);
+                });
+            });
+
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.trim();
+                if (query.length >= 2) {
+                    performSearch(query);
+                } else if (query.length === 0 && isSearchMode) {
+                    showMainMenu();
+                }
+            });
+        }
+
+        function loadCategoryCounts() {
+            const counts = {
+                morning: azkarData.morning.length,
+                evening: azkarData.evening.length,
+                prayer: azkarData.prayer.length,
+                duas: azkarData.duas.length
+            };
+
+            Object.keys(counts).forEach(category => {
+                const element = document.querySelector(`[data-category="${category}"] .category-count`);
+                if (element) {
+                    element.textContent = `${counts[category]} азкаров`;
+                }
+            });
+        }
+
+        function showCategory(category) {
+            currentCategory = category;
+            isSearchMode = false;
+            
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('azkarView').classList.add('active');
+            
+            const titles = {
+                morning: '🌅 Утренние азкары',
+                evening: '🌇 Вечерние азкары',
+                prayer: '🕌 После намаза',
+                duas: '🤲 Дуа',
+                bookmarks: '⭐ Закладки'
+            };
+            
+            document.getElementById('categoryTitle').textContent = titles[category] || category;
+            
+            const azkarList = document.getElementById('azkarList');
+            azkarList.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i><br>Загрузка...</div>';
+            
+            setTimeout(() => {
+                loadAzkarContent(category);
+            }, 100);
+        }
+
+        function loadAzkarContent(category) {
+            const azkarList = document.getElementById('azkarList');
+            
+            if (category === 'bookmarks') {
+                if (bookmarks.length === 0) {
+                    azkarList.innerHTML = '<div class="empty-state">Нет закладок</div>';
+                    return;
+                }
+                displayAzkarItems(bookmarks, 'bookmarks');
+                return;
+            }
+            
+            if (!azkarData[category]) {
+                azkarList.innerHTML = '<div class="empty-state">Контент скоро появится...</div>';
+                return;
+            }
+            
+            displayAzkarItems(azkarData[category], category);
+        }
+
+        function displayAzkarItems(items, category) {
+            const azkarList = document.getElementById('azkarList');
+            
+            if (items.length === 0) {
+                azkarList.innerHTML = '<div class="empty-state">Ничего не найдено</div>';
+                return;
+            }
+            
+            let html = '';
+            
+            items.forEach((item, index) => {
+                const isBookmarked = bookmarks.some(b => b.arabic === item.arabic && b.category === category);
+                
+                html += `
+                    <div class="azkar-item">
+                        <div class="azkar-number">${index + 1}</div>
+                        <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(this, '${category}', ${index})">
+                            <i class="fas fa-star"></i>
+                        </button>
+                        <div class="arabic-text">${item.arabic}</div>
+                        <div class="translation">${item.translation}</div>
+                        ${item.transliteration ? `<div class="transliteration">${item.transliteration}</div>` : ''}
+                        ${item.count ? `
+                            <div class="counter-container">
+                                <button class="counter-btn" onclick="changeCounter(this, -1)"><i class="fas fa-minus"></i></button>
+                                <span class="counter-value">0</span>
+                                <button class="counter-btn" onclick="changeCounter(this, 1)"><i class="fas fa-plus"></i></button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            
+            azkarList.innerHTML = html;
+        }
+
+        function performSearch(query) {
+            const searchTerm = query.toLowerCase();
+            searchResults = [];
+            isSearchMode = true;
+            
+            Object.keys(azkarData).forEach(category => {
+                azkarData[category].forEach(item => {
+                    if (item.arabic.toLowerCase().includes(searchTerm) ||
+                        item.translation.toLowerCase().includes(searchTerm) ||
+                        (item.transliteration && item.transliteration.toLowerCase().includes(searchTerm))) {
+                        searchResults.push({...item, category: category});
+                    }
+                });
+            });
+            
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('azkarView').classList.add('active');
+            document.getElementById('categoryTitle').textContent = `🔍 Поиск: "${query}"`;
+            
+            const azkarList = document.getElementById('azkarList');
+            
+            if (searchResults.length === 0) {
+                azkarList.innerHTML = '<div class="empty-state">Ничего не найдено</div>';
+                return;
+            }
+            
+            let html = `<div style="color:var(--text2);margin-bottom:15px;">Найдено: ${searchResults.length}</div>`;
+            
+            searchResults.forEach((item, index) => {
+                const isBookmarked = bookmarks.some(b => b.arabic === item.arabic && b.category === item.category);
+                const catNames = {morning:'Утренние',evening:'Вечерние',prayer:'После намаза',duas:'Дуа'};
+                
+                html += `
+                    <div class="azkar-item">
+                        <div style="font-size:12px;color:var(--accent);margin-bottom:10px;">${catNames[item.category] || item.category}</div>
+                        <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(this, '${item.category}', ${index})">
+                            <i class="fas fa-star"></i>
+                        </button>
+                        <div class="arabic-text">${item.arabic}</div>
+                        <div class="translation">${item.translation}</div>
+                        ${item.transliteration ? `<div class="transliteration">${item.transliteration}</div>` : ''}
+                    </div>
+                `;
+            });
+            
+            azkarList.innerHTML = html;
+        }
+
+        function toggleBookmark(button, category, index) {
+            let item;
+            
+            if (isSearchMode && searchResults.length > 0) {
+                item = searchResults[index];
+            } else if (category === 'bookmarks') {
+                item = bookmarks[index];
+            } else {
+                item = azkarData[category][index];
+            }
+            
+            const bookmarkIndex = bookmarks.findIndex(b => b.arabic === item.arabic && b.category === (item.category || category));
+            
+            if (bookmarkIndex === -1) {
+                bookmarks.push({...item, category: item.category || category, addedAt: new Date().toISOString()});
+                button.classList.add('active');
+                showNotification('Добавлено в закладки');
+            } else {
+                bookmarks.splice(bookmarkIndex, 1);
+                button.classList.remove('active');
+                if (currentCategory === 'bookmarks') loadAzkarContent('bookmarks');
+                showNotification('Удалено из закладок');
+            }
+            
+            localStorage.setItem('azkar_bookmarks', JSON.stringify(bookmarks));
+            updateBookmarksCount();
+        }
+
+        function updateBookmarksCount() {
+            const count = bookmarks.length;
+            document.getElementById('bookmarksCount').textContent = count;
+        }
+
+        function changeCounter(button, delta) {
+            const counter = button.parentElement.querySelector('.counter-value');
+            let value = parseInt(counter.textContent) || 0;
+            value = Math.max(0, value + delta);
+            counter.textContent = value;
+        }
+
+        function showMainMenu() {
+            document.getElementById('mainMenu').style.display = 'grid';
+            document.getElementById('azkarView').classList.remove('active');
+            document.querySelector('.search-input').value = '';
+            isSearchMode = false;
+            currentCategory = '';
+        }
+
+        function scrollToTop() {
+            window.scrollTo({top:0,behavior:'smooth'});
+        }
+
+        function shareAzkar() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Азкары - Благодатный дождь',
+                    text: 'Читайте азкары в приложении "Благодатный дождь"',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                showNotification('Ссылка скопирована');
+            }
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = 'position:fixed;top:20px;right:20px;background:var(--accent);color:white;padding:12px 20px;border-radius:var(--radius);z-index:1000;';
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
